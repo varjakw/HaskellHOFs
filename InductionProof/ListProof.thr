@@ -1,0 +1,36 @@
+{-
+P([]) ^ ( P(xs) ==> P(x:xs) ) proves inductively that P(ys) holds for all ys in [t]
+
+Specified as follwos in a theory file:
+-}
+
+INDUCTION-SCHEME List
+BASE []
+STEP xs --> (x:xs)
+INJ ((x == y)&&(xs == ys)) == ((x:xs) == (y:ys))
+
+{-Induction strategy we can use:
+
+STRATEGY Induction <ind-var> :: <type>
+BASE <val> <br!> <expr>
+<one of the other four strategies>
+QED BASE
+STEP <expr>
+ASSUME <br?> <expr>
+SHOW <br?> <expr>
+<one of the other four strategies>
+QED STEP
+
+
+Using this strategy for lists:
+-}
+
+STRATEGY Induction xs :: List
+BASE [] <br!> P([])
+<one of the other four strategies>
+QED BASE
+STEP (x:xs)
+ASSUME <br?> P(xs)
+SHOW <br?> P(x:xs)
+<one of the other four strategies>
+QED STEP
