@@ -1,0 +1,8 @@
+{-P(0) ^ ( P(x) ==> P(x+1) ) proves inductively that P(n) holds for all n in N
+
+In a prfchk theory file we can specify this as follows:-}
+
+INDUCTION-SCHEME Nat
+BASE 0
+STEP x--> x+1
+INJ ( x == y ) == ( (x + 1) == (y + 1) )
